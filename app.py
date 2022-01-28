@@ -13,8 +13,7 @@ def cria_banco():
 
 api.add_resource(Hoteis, '/hoteis')
 api.add_resource(Hotel, '/hoteis/<string:hotel_id>')
-
+from sql_alchemy import banco
+banco.init_app(app)
 if __name__ == '__main__':
-    from sql_alchemy import banco
-    banco.init_app(app)
     app.run(debug=True, host='0.0.0.0')
