@@ -3,10 +3,10 @@ networks:
   app-network:
 services:
   app:
-    build: .
+    image:  prisys/apphotel:latest
     command: bash ./app.sh
     ports:
-      - 5000:5000
+      - '27017:27017'
     networks:
       - app-network
 
