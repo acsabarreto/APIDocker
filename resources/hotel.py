@@ -1,11 +1,22 @@
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
+import numpy as np
+import os
+
 
 class Hoteis(Resource):
+
     def get(self):
+
+        number_of_iterations = int(float(os.getenv('N_ITERATIONS')))
+        elements = np.array(0, dtype=float)
+        for i in range(number_of_iterations):
+            elements = np.append(elements, (i + i) /(i+1))
         return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]} # SELECT * FROM hoteis
 
+
 class Hotel(Resource):
+
     atributos = reqparse.RequestParser()
     atributos.add_argument('nome', type=str, required=True, help="The field 'nome' cannot be left blank.")
     atributos.add_argument('estrelas')
@@ -13,6 +24,11 @@ class Hotel(Resource):
     atributos.add_argument('cidade')
 
     def get(self, hotel_id):
+
+        number_of_iterations = int(float(os.getenv('N_ITERATIONS')))
+        elements = np.array(0, dtype=float)
+        for i in range(number_of_iterations):
+            elements = np.append(elements, (i + i) /(i+1))
         hotel = HotelModel.find_hotel(hotel_id)
         if hotel:
             return hotel.json()
