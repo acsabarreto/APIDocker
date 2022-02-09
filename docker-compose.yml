@@ -3,8 +3,7 @@ networks:
   app-network:
 services:
   app:
-    build: .
-    #image:  prisys/apphotel:latest
+    image:  prisys/apphotel:latest
     command: bash ./app.sh
     environment:
       - WORKERS=5
