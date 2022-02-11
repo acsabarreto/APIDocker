@@ -3,11 +3,13 @@ networks:
   app-network:
 services:
   app:
-    image:  prisys/apphotel:latest
+    build: .
+    #image:  prisys/apphotel:latest
     command: bash ./app.sh
     environment:
       - WORKERS=5
       - N_ITERATIONS=10e4
+      - TIMEOUT=0
     ports:
       - '27017:27017'
     networks:
