@@ -1,0 +1,10 @@
+configs:
+  - resources:
+      memory: "64Mi"
+      cpu: "250m"
+  - resources:
+      memory: "128Mi"
+      cpu: "500m"
+  - resources:
+      memory: "256Mi"
+      cpu: "1000m"
