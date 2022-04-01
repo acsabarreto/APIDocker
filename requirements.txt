@@ -14,3 +14,7 @@ Werkzeug==2.0.2
 gunicorn
 numpy
 pyyaml
+opentelemetry-instrumentation-flask
+opentelemetry-distro
+opentelemetry-exporter-zipkin
+pandas

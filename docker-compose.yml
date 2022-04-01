@@ -2,15 +2,28 @@ version: '2'
 networks:
   app-network:
 services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - '9411:9411'
+    networks:
+      - app-network
+  
   app:
-    #build: .
-    image:  prisys/apphotel:latest
+    build: .
+    #image:  prisys/apphotel:latest
     command: bash ./app.sh
     environment:
       - WORKERS=5
       - N_ITERATIONS=1000
       - TIMEOUT=0
+      - OTEL_EXPORTER_ZIPKIN_ENDPOINT=http://master.priscila.com:9411/api/v2/spans
+      - HOST=http://master.priscila.com:9411
     ports:
       - '27017:27017'
+      - '27018:27018'
     networks:
       - app-network
+    
+    links:
+      - zipkin
